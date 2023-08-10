@@ -15,13 +15,15 @@ export class App extends Component {
 
 
 componentDidMount() {
-const contactsLS = JSON.parse(localStorage.getItem("contacts")) || [];
-this.setState({ contacts: contactsLS });
+const contactsLS = JSON.parse(localStorage.getItem("contacts"));
+if(contactsLS) {
+  this.setState({ contacts: contactsLS });
+}
 
 }
 
 componentDidUpdate(prevProps, prevState) {
-if (prevState.contacts !== this.state.cart) {
+if (prevState.contacts !== this.state.contacts) {
   localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
 }
 
